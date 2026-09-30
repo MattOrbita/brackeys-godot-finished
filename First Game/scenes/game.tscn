@@ -1,7 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://bq2d6qjw77bvs"]
+[gd_scene load_steps=7 format=3 uid="uid://bq2d6qjw77bvs"]
 
 [ext_resource type="PackedScene" uid="uid://4bew5vx4oqkg" path="res://scenes/player.tscn" id="1_rbmkf"]
 [ext_resource type="PackedScene" uid="uid://dcw8ry2tsyewl" path="res://scenes/tile_map.tscn" id="2_dvr5d"]
+[ext_resource type="PackedScene" uid="uid://boto45xbsqpfp" path="res://scenes/platform.tscn" id="3_hry7x"]
+
+[sub_resource type="Animation" id="Animation_iq4k7"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(128, 5), Vector2(256, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_6f088"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cokn0"]
+_data = {
+"RESET": SubResource("Animation_6f088"),
+"move": SubResource("Animation_iq4k7")
+}
 
 [node name="Game" type="Node2D"]
 
@@ -16,3 +55,12 @@ position_smoothing_enabled = true
 
 [node name="TileMap" parent="." instance=ExtResource("2_dvr5d")]
 layer_0/tile_data = PackedInt32Array(65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0)
+
+[node name="Platform" parent="." instance=ExtResource("3_hry7x")]
+position = Vector2(128, 5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform"]
+libraries = {
+"": SubResource("AnimationLibrary_cokn0")
+}
+autoplay = "move"
