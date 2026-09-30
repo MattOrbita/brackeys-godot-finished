@@ -1,14 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://bq53ljqkh0moe"]
 
-[sub_resource type="GDScript" id="GDScript_sgjlq"]
-script/source = "extends Area2D
-
-
-func _on_body_entered(body):
-	get_tree().reload_current_scene()
-"
+[ext_resource type="Script" path="res://scripts/killzone.gd" id="1_2glk6"]
 
 [node name="Killzone" type="Area2D"]
-script = SubResource("GDScript_sgjlq")
+script = ExtResource("1_2glk6")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
