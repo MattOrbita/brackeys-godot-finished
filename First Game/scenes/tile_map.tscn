@@ -429,3 +429,7 @@ sources/0 = SubResource("TileSetAtlasSource_5ggsi")
 [node name="TileMap" type="TileMap"]
 tile_set = SubResource("TileSet_pe0x4")
 format = 2
+layer_0/name = "Main"
+layer_1/name = "Background"
+layer_1/z_index = -1
+layer_1/tile_data = PackedInt32Array()
